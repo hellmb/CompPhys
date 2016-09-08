@@ -25,26 +25,30 @@ v1000 = readfile(myfile_v1000)
 # declaration
 n = 1000
 h = 1.0/(n+1)
+h_10 = 1.0/(10+1)
 
 def u(x):
     """ Calculate u(x). """
-    u_exact = 1 - (1 - (np.exp(-10))*x - np.exp(-10*x))
+    u_exact = 1.0 - (1.0 - np.exp(-10.0))*x - np.exp(-10.0*x)
     return u_exact
 
-x = np.zeros(n)
-
-# calculate x
-for i in range(n):
-    x[i] = i*h
+# declaring x values
+x = np.linspace(0, 1, 1002)
+x_10 = np.linspace(0, 1, 12)
+x_100 = np.linspace(0, 1, 102)
 
 # call u
 u_exact = u(x)
 
 plt.plot(x, u_exact, label='u_exact')
-plt.plot(x, v10, label='v10')
-plt.plot(x, v100, label='v100')
-plt.plot(x, v1000, label='v1000')
+plt.plot(x_10, v10, label='v10')
+#plt.plot(x_100, v100, label='v100')
+#plt.plot(x, v1000, label='v1000')
 plt.legend()
 plt.xlabel('x')
 plt.ylabel('u')
 plt.show()
+
+
+
+

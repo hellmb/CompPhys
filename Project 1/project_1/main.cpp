@@ -70,6 +70,11 @@ int main() {
         v[i] = (d_tilde[i] - c[i] * v[i+1]) / b_tilde[i];
     }
 
+   for (int i=0; i<n+2; i++){
+       cout << *(v + i) << endl;
+   }
+
+    /*
     // creating files to add the second derivatives
     ofstream myfile;
     //myfile.open("vector_v10.txt");
@@ -80,6 +85,7 @@ int main() {
     for (int i=0; i<n+2; i++){
         myfile << v[i] << " " << endl;
     }
+    */
 
 
     // deleting from heap, make more efficient later!
