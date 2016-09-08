@@ -71,22 +71,14 @@ int main() {
     }
 
     // creating files to add the second derivatives
-    ofstream myfile, myfile2, myfile3;
-    myfile.open("vector_v10.txt");
-    myfile2.open("vector_v100.txt");
-    myfile3.open("vector_v1000.txt");
+    ofstream myfile;
+    //myfile.open("vector_v10.txt");
+    //myfile.open("vector_v100.txt");
+    myfile.open("vector_v1000.txt");
 
     // adding values for each n to files
     for (int i=0; i<n+2; i++){
-        if (n == 10){
-            myfile << v[i] << endl;
-        }
-        else if (n == 100) {
-            myfile2 << v[i] << endl;
-        }
-        else if (n == 1000) {
-            myfile3 << v[i] << endl;
-        }
+        myfile << v[i] << " " << endl;
     }
 
 
