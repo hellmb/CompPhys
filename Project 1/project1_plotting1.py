@@ -1,10 +1,14 @@
-import numpy as np
-import matplotlib.pyplot as plt
+#import numpy as np
+#import matplotlib.pyplot as plt
 
+from pylab import *
+
+'''
 # Makes me type in the name of star file in the terminal window
 myfile_v10 = "vector_v10.txt"
 myfile_v100 = "vector_v100.txt"
 myfile_v1000 = "vector_v1000.txt"
+
 
 # Function to read elements from file
 def readfile(name):
@@ -21,6 +25,12 @@ def readfile(name):
 v10 = readfile(myfile_v10)
 v100 = readfile(myfile_v100)
 v1000 = readfile(myfile_v1000)
+'''
+
+v10 = loadtxt('vector_v10.txt')
+v100 = loadtxt('vector_v100.txt')
+v1000 = loadtxt('vector_v1000.txt')
+
 
 # declaration
 n = 1000
@@ -39,17 +49,18 @@ x_100 = np.linspace(0, 1, 102)
 # call u
 u_exact = u(x)
 
-print len(v1000)
+searchval = 0.0
+ii = np.where(v1000 == searchval)
 
-plt.plot(x, u_exact, label='u_exact')
-plt.plot(x_10, v10, '-.', label='v10')
-plt.plot(x_100, v100, '-.', label='v100')
-plt.plot(x, v1000, '-.', label='v1000')
-plt.legend()
-plt.xlabel('x')
-plt.ylabel('u')
-plt.show()
 
+plot(x, u_exact, linewidth = 2.0, label='u_exact')
+plot(x_10, v10, label='v10')
+plot(x_100, v100, '*', label='v100')
+plot(x, v1000, '-.', label='v1000')
+legend()
+xlabel('x')
+ylabel('u')
+show()
 
 
 
