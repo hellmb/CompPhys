@@ -33,8 +33,8 @@ v1000 = loadtxt('vector_v1000.txt')
 
 
 # declaration
-n = 1000
-h = 1.0/(n+1)
+#n = 1000
+#h = 1.0/(n+1)
 
 def u(x):
     """ Calculate u(x) """
@@ -48,11 +48,17 @@ x_100 = np.linspace(0, 1, 102)
 
 # call u
 u_exact = u(x)
+#print u_exact
 
 searchval = 0.0
 ii = np.where(v1000 == searchval)
 
+#error = log10( abs( ( v1000[1:-2] - u_exact[1:-2] ) / u_exact[1:-2] ) )
 
+
+print u_exact
+
+'''
 plot(x, u_exact, linewidth = 2.0, label='u_exact')
 plot(x_10, v10, label='v10')
 plot(x_100, v100, '*', label='v100')
@@ -61,6 +67,6 @@ legend()
 xlabel('x')
 ylabel('u')
 show()
-
+'''
 
 

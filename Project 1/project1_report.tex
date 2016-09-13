@@ -104,7 +104,7 @@ where we define the discretized approximation to $u$ as $v_i$ with grid point $x
 \end{align*}
 where $f_i = f(x)$. We then rewrote the equation as a linear set of equations:
 \begin{align*}
-- (v_{i+1} + v_{i-1} - 2v_i) = h^2f_i 
+- (v_{i+1} + v_{i-1} - 2v_i) &= h^2f_i \\
 \intertext{We solved this equation for a few values of $i$. We also set $h^2f_i = d_i$.}
 \intertext{$i = 1$:}
 - (v_{1+1} + v_{1-1} - 2v_1) &= d_1 \\

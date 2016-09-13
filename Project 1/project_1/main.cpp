@@ -11,18 +11,29 @@ int main() {
     // calculate h value
     double h = 1.0/ (n + 1);
 
+    // taking the logarithm of h to solve exercise c
+    // currently commenting out when solving exercise b
+    //double h = log10( 1.0/ (n + 1) );
+
+
     // dynamic memory allocation, array with n+2 elements, see notes why
-    double *a, *b, *c, *f, *v, *k, *d, *b_tilde, *x;
+    double *a, *b, *c, *v, *k, *d, *b_tilde, *x;
 
     a = new double[n+2];
     b = new double[n+2];
     c = new double[n+2];
-    f = new double[n+2];
     v = new double[n+2];
     k = new double[n+2];
     d = new double[n+2];
     b_tilde = new double[n+2];
     x = new double[n+2];
+
+
+    // dynamic memory allocation of u and epsilon
+    double *u, *eps;
+    u = new double[n+2];
+    eps = new double[n+2];
+
 
     // we need an extra element i a because of the (n+1) row
     for (int i=1; i<n+2; i++){
@@ -47,6 +58,7 @@ int main() {
     // loop to calculate the forward substitution algorithms
     for (int i=1; i<n+1; i++){
         if (b_tilde[i-1] == 0){
+            // calculating b_tilde special case
             b_tilde[i] = b[i];
         }
         else {
@@ -66,8 +78,12 @@ int main() {
         v[i] = (d[i] - c[i] * v[i+1]) / b_tilde[i];
     }
 
-    for (int i=0; i<n+2; i++){
-       cout << *(c + i) << endl;
+    for (int i=1; i<n+1; i++) {
+        // creating u_i
+        u[i] = 1.0 - (1.0 - exp(-10.0))*x[i] - exp(-10.0*x[i]);
+
+        // calculating the error
+        eps[i] = log10 ( abs( (v[i] - u[i]) / u[i] ) );
     }
 
 /*
@@ -83,16 +99,37 @@ int main() {
     }
 */
 
+    // printing u_exact
+    for (int i=0; i<n+2; i++){
+        //cout << *(u + i) << ','<< *(v + i) << ',' << *(eps + i)<< endl;
+        cout << *(eps + i) << endl;
+    }
+
+/*
+    // creating file to store error values -> find maximum value in python
+    ofstream myfile;
+    //myfile.open("error_10.txt");
+    //myfile.open("error_100.txt");
+    //myfile.open("error_1000.txt");
+    //myfile.open("error_10000.txt");
+    //myfile.open("error_100000.txt");
+
+    for (int i=0; i<n+2; i++){
+        myfile << eps[i] << endl;
+        //cout << *(eps + i) << endl;
+    }
+*/
+
     // deleting from heap, make more efficient later!
     delete [] a;
     delete [] b;
     delete [] c;
-    delete [] f;
     delete [] v;
     delete [] k;
     delete [] d;
     delete [] b_tilde;
     delete [] x;
+    delete [] u;
 
     return 0;
 }
