@@ -11,11 +11,6 @@ int main() {
     // calculate h value
     double h = 1.0/ (n + 1);
 
-    // taking the logarithm of h to solve exercise c
-    // currently commenting out when solving exercise b
-    //double h = log10( 1.0/ (n + 1) );
-
-
     // dynamic memory allocation, array with n+2 elements, see notes why
     double *a, *b, *c, *v, *k, *d, *b_tilde, *x;
 
@@ -101,8 +96,7 @@ int main() {
 
     // printing u_exact
     for (int i=0; i<n+2; i++){
-        //cout << *(u + i) << ','<< *(v + i) << ',' << *(eps + i)<< endl;
-        cout << *(eps + i) << endl;
+        //cout << *(eps + i) << endl;
     }
 
 /*
@@ -114,7 +108,7 @@ int main() {
     //myfile.open("error_10000.txt");
     //myfile.open("error_100000.txt");
 
-    for (int i=0; i<n+2; i++){
+    for (int i=1; i<n+1; i++){
         myfile << eps[i] << endl;
         //cout << *(eps + i) << endl;
     }
