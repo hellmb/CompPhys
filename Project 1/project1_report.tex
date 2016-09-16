@@ -6,6 +6,8 @@
 \usepackage{tensor}
 \usepackage{subfigure}
 \usepackage{float}
+\usepackage{natbib}
+\usepackage{url}
 %Include packages to have python(or other prog. languages) scripts included in the pdf-file without broken lines
 \usepackage{color}
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -168,7 +170,7 @@ The following tridiagonal matrix is written on the general form, For simplicity,
     d_4 \\
 	\end{array} \right)
 
-\noindent We used Gaussian elimination, also known as the tridiagonal matrix algorithm(ref:wiki) to solve the above system. We first decomposed $\vec{A}$ and used forward substitution so that $a_2$, $a_3$ and $a_4$ equals zero. We gave the decomposed row a new name.\\
+\noindent We used Gaussian elimination, also known as the tridiagonal matrix algorithm \citep{WikiT} to solve the above system. We first decomposed $\vec{A}$ and used forward substitution so that $a_2$, $a_3$ and $a_4$ equals zero. We gave the decomposed row a new name.\\
 \noindent We were already happy with $\RNum{1}$, as it had no $a$, moving on we got \\
 \begin{align*}
 \widetilde{\RNum{2}} = \RNum{2} - \RNum{1}  k_1 = (0, \ \tilde{b_2}, \ c_2, \ 0)     \\
@@ -218,7 +220,7 @@ After doing this for a couple more rows one can clearly see that the algorithm f
 
 and we now have our four algorithms to be implemented into our code.\\
 
-%%%%%%%%%%%%%%%%%%%%%END B%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%METHOD END B%%%%%%%%%%%%%%%%%
 
 \addcontentsline{toc}{section}{Results}
 \subsubsection*{Results}
@@ -233,8 +235,8 @@ and we now have our four algorithms to be implemented into our code.\\
 
 %%%%%% B %%%%%%%%%%%
 
-\noindent FLOPS is an acronym for floating point operations per second, and is a useful tool to measure computer perfomance. \\
-The following table shows the variable names from our general algorithm with their corresponding FLOPS. $\tilde{b_i}$ is a special case as the fraction/relation $\frac{c_{i-1}}{b_{i-1}}$ will only need to be computed once. Therefore the amount of FLOPS will be 3 the first time $b_i$ is calculated, but 2 thereafter.
+\noindent FLOPS is an acronym for floating point operations per second \citep{WikiF}, and is a useful tool to measure computer perfomance. \\
+The following table shows the variable names from our general algorithm with their corresponding FLOPS. $\tilde{b_i}$ is a special case as the relation $\frac{c_{i-1}}{b_{i-1}}$ will only need to be computed once. Therefore the amount of FLOPS will be 3 the first time $b_i$ is calculated, but 2 thereafter. \\
 
 
 \begin{center}
@@ -246,19 +248,28 @@ The following table shows the variable names from our general algorithm with the
     $\tilde{d_i}$ & 2
   \end{tabular}
 \end{center}
-\addcontentsline{toc}{section}{Conclusion}
-\subsubsection*{Conclusion}
-
+\\
+\noindent Figure \ref{fig:1b} shows how the general tridiagonal matrix algorithm for three different $n$'s compare to the closed form solution. There is a total of four curves in this Figure, with the one for n = 10 (green) giving, as expected, the biggest difference. \\
+\noindent The latter three curves are harder to distinguish, so Figure \ref{fig:1bz} shows a zoomed version of Figure \ref{fig:1b}. Here one can see that the larger $n$ value gives the closest result to the closed form solution.
+%%%SLITER MED AA FAA BEGGE FIGURENE TIL AA GJORE SOM JEG VIL
+\begin{center}
+    \begin{figure}[h!]
+    %\centering
+        \includegraphics[width=1.4\textwidth]{figure_1b.png}
+        \caption{Closed form solution(blue) versus the     tridiagonal matrix algorithm for n = 10     (green), n = 100 (red stars), and n = 1000 (red line). }
+        \label{fig:1b}
+    \end{figure}
+\end{center}
 
 \begin{center}
     \begin{figure}[h!]
     %\centering
-        \includegraphics[width=1.4\textwidth, center]{figure_1b.png}
-        \caption{Closed form solution(blue) versus the     tridiagonal matrix algorithm for n = 10     (green), n = 100 (red stars), and n = 1000 (red     line). }
-        \label{fig:1b}
+        \includegraphics[width=1.4\textwidth]{figure_1b_zoom.png}
+        \caption{Closed form solution(blue) versus the     tridiagonal matrix algorithm for n = 100 (red star), and n = 1000 (red line). }
+        \label{fig:1bz}
     \end{figure}
 \end{center}
-%%%% END B %%%%%
+%%%% RESULT END B %%%%%
 
 %%%%%%%%%%%%% TABLE FOR D %%%%%%%%%
 \begin{center}
@@ -278,6 +289,9 @@ The following table shows the variable names from our general algorithm with the
   \end{tabular}
 \end{center}
 %%%%%%%%%%%%%
+\addcontentsline{toc}{section}{Conclusion}
+\subsubsection*{Conclusion}
+
 \begin{itemize}
 \item Main findings
 \item Perspectives on improvement and future work
@@ -304,7 +318,8 @@ The following table shows the variable names from our general algorithm with the
 
 
 
-
+\bibliographystyle{unsrtnat}
+\bibliography{project1}
 
 
 \end{document}
