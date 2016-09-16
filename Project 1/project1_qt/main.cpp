@@ -8,7 +8,7 @@ int main() {
 
     int n = 1000;
 
-    // creating a matrix A with n*n ele ments
+    // creating a matrix A with n*n elements
     mat A(n, n);
 
     // creating two matrices L and U
