@@ -6,6 +6,8 @@
 \usepackage{tensor}
 \usepackage{subfigure}
 \usepackage{float}
+\usepackage{natbib}
+\usepackage{url}
 %Include packages to have python(or other prog. languages) scripts included in the pdf-file without broken lines
 \usepackage{color}
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -37,26 +39,26 @@ tabsize=2}
 
 \begin{titlepage}
 
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} 
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \center
 
-\textsc{\LARGE University of Oslo}\\[1.5cm] 
-\textsc{\Large FYS4150}\\[0.5cm] 
-\textsc{\large Kine Moseid, Helene Aune og Helle Bakke}\\[0.5cm] 
+\textsc{\LARGE University of Oslo}\\[1.5cm]
+\textsc{\Large FYS4150}\\[0.5cm]
+\textsc{\large Kristine Moseid, Helene Aune og Helle Bakke}\\[0.5cm]
 
 \begin{minipage}{0.4\textwidth}
 \end{minipage}\\[1cm]
 
 \HRule \\[0.4cm]
-{ \huge \bfseries Introduction to numerical projects}\\[0.4cm] 
+{ \huge \bfseries Introduction to numerical projects}\\[0.4cm]
 \HRule \\[1.5cm]
- 
+
 \begin{minipage}{0.4\textwidth}
 \end{minipage}\\[8cm]
 
 
-{\large \today}\\[3cm] 
-\vfill 
+{\large \today}\\[3cm]
+\vfill
 
 \end{titlepage}
 
@@ -98,12 +100,13 @@ where we define the discretized approximation to $u$ as $v_i$ with grid point $x
 \begin{itemize}
 \item Describe methods and algorithms
 \item Explain
-\item Calculations to demonstrate the code, verify results(benchmarks) 
+\item Calculations to demonstrate the code, verify results(benchmarks)
 \end{itemize}
 
 \subsection{Tridiagonal matrix}
 
 \noindent With the bounadry condition $v_0 = v_{n+1} = 0$, the approximation of the second derivative of $u$ was written as 
+
 \begin{align*}
 - \frac{v_{i+1} + v_{i-1} - 2v_i}{h^2} = f_i, \quad i = 1,...,n
 \intertext{where $f_i = f(x)$. We then rewrote the equation as a linear set of equations:}
@@ -115,7 +118,7 @@ where we define the discretized approximation to $u$ as $v_i$ with grid point $x
 - v_2 - 0 + 2v_1 &= d_1
 \intertext{$i = 2$:}
 - (v_{2+1} + v_{2-1} - 2v_2) &= d_2 \\
-- v_3 - v_1 + 2v_2) &= d_2 
+- v_3 - v_1 + 2v_2) &= d_2
 \intertext{$i = 3$:}
 - (v_{3+1} + v_{3-1} - 2v_3) &= d_3 \\
 - v_4 - v_2 + 2v_3) &= d_3	
@@ -148,7 +151,6 @@ where we define the discretized approximation to $u$ as $v_i$ with grid point $x
 	\end{array} \right)
 \end{align*}
 
-
 \section{Results}
 
 \begin{itemize}
@@ -157,6 +159,7 @@ where we define the discretized approximation to $u$ as $v_i$ with grid point $x
 \item Put code etc. on GitHub and explain to reader where they can find it
 \item Explanatory figures with captions, labels etc.
 \end{itemize}
+
 
 \section{Conclusion}
 
@@ -181,9 +184,6 @@ where we define the discretized approximation to $u$ as $v_i$ with grid point $x
 \item Find scientific articles, books etc.
 \item BibTex - extract references online
 \end{itemize}
-
-
-
 
 
 
