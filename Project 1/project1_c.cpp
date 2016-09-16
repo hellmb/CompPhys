@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    // matrice size
+    // matrix size
     int n = 1000000;
 
     // calculate h value
@@ -24,19 +24,17 @@ int main() {
     b_spec = new double[n+2];
     x = new double[n+2];
 
-
-
-    // we need an extra element i a because of the (n+1) row
+    // we need an extra element in a because of the (n+1) row
     for (int i=1; i<n+2; i++){
         a[i] = -1.0;
     }
 
-    // the c-values only go to the n-1 row
+    // one less element in c because these values only go to the (n-1) row
     for (int i=1; i<n; i++){
         c[i] = -1.0;
     }
 
-    // fill arrrays, calculate x, 
+    // fill arrays and calculating x and d
     for (int i=1; i<n+1; i++) {
         b[i] = 2.0;
         x[i] = i*h;
@@ -48,9 +46,9 @@ int main() {
 
     // time CPU
     clock_t start, finish;           // declare start and final time 
-    start = clock();
+    start = clock();                 // start clock
 
-    // loop to calculate the forward substitution algorithms
+    // calculating forward substitution algorithm for the special case
     for (int i=1; i<n+1; i++){
         b_spec[i] = ( i + 1 ) / i;
     
@@ -58,7 +56,7 @@ int main() {
         d[i] = d[i] - d[i-1] * k[i-1];
     }
 
-    // initializing last and next to last value of vector v
+    // initializing last and next to last value of vector v for the special case
      v[n+1] = 0.0;
      v[n] = ( d[n] * n ) / ( n + 1 );
 
@@ -68,10 +66,12 @@ int main() {
     }
 
 
-    finish = clock();
+    finish = clock();                   // end clock
+
+    // print CPU time
     cout << ( (double) ( finish - start ) / ((double)CLOCKS_PER_SEC )) << endl;
 
-    // time to calculate is small -> woho!
+    // time to calculate is small -> woho! Remember to make table of clock values!!
 
     // deleting from heap, make more efficient later!
     delete [] a;

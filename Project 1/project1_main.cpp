@@ -85,6 +85,7 @@ int main() {
     // print CPU time
     cout << ( (double) ( finish - start ) / ((double)CLOCKS_PER_SEC )) << endl;
 
+    // calculating closed-form solution u(x) and epsilon
     for (int i=1; i<n+1; i++) {
         // creating u_i
         u[i] = 1.0 - (1.0 - exp(-10.0))*x[i] - exp(-10.0*x[i]);
@@ -93,14 +94,14 @@ int main() {
         eps[i] = log10 ( abs( (v[i] - u[i]) / u[i] ) );
     }
 
-/*
+
     // creating files to add the second derivatives
     ofstream myfile;
     //myfile.open("vector_v10.txt");
     //myfile.open("vector_v100.txt");
     //myfile.open("vector_v1000.txt");
 
-    // adding values for each n to files
+    // writing v values for each n to file
     for (int i=0; i<n+2; i++){
         myfile << v[i] << " " << endl;
     }
@@ -113,15 +114,13 @@ int main() {
     //myfile.open("error_1E6.txt"); 
     //myfile.open("error_1E7.txt");  
 
-    //Supposed to do this for n <= 10^7
-
+    // writing epsilon values for each n to file
     for (int i=1; i<n+1; i++){
         myfile << eps[i] << endl;
-        //cout << *(eps + i) << endl;
     }
 
-*/
-    // deleting from heap, make more efficient later!
+
+    // deleting from heap to free m
     delete [] a;
     delete [] b;
     delete [] c;

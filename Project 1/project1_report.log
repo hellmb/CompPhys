@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  12 SEP 2016 14:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  16 SEP 2016 22:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -486,31 +486,25 @@ e
 \openout3 = `project1_report.toc'.
 
  [1]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 72.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 71.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 72.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 71.
 
-! Misplaced alignment tab character &.
-l.104 - \frac{v_{i+1} + v_{i-1} - 2v_i}{h^2} &
-                                              = f_i, \quad i = 1,...,n
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
+Underfull \hbox (badness 10000) in paragraph at lines 90--92
+
+ []
 
 [2] [3] [4] (./project1_report.aux) ) 
 Here is how much of TeX's memory you used:
- 3968 strings out of 493089
- 54022 string characters out of 6134842
- 126642 words of memory out of 5000000
- 7393 multiletter control sequences out of 15000+600000
- 10692 words of font info for 38 fonts, out of 8000000 for 9000
+ 3969 strings out of 493089
+ 54039 string characters out of 6134842
+ 125642 words of memory out of 5000000
+ 7394 multiletter control sequences out of 15000+600000
+ 10999 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,14n,32p,248b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/
@@ -523,7 +517,7 @@ e1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1
 ublic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy8.pfb>
-Output written on project1_report.pdf (5 pages, 97676 bytes).
+Output written on project1_report.pdf (5 pages, 100701 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  39 compressed objects within 1 object stream

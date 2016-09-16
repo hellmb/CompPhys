@@ -65,16 +65,14 @@ tabsize=2}
 
 \newpage
 
-\addcontentsline{toc}{section}{Summary}
-\subsubsection*{Summary}
+\section{Abstract}
 
 \begin{itemize}
 \item Tease the reader
 \item Write last
 \end{itemize}
 
-\addcontentsline{toc}{section}{Introduction}
-\subsubsection*{Introduction}
+\section{Introduction}
 
 \begin{itemize}
 \item Motivate the reader
@@ -84,13 +82,18 @@ tabsize=2}
 
 \noindent The aim of this project is to solve the one-dimensional Poisson equation with Dirichlet boundary conditions by rewriting it as a set of linear equations. We will be solving the equation
 \begin{align*}
+\frac{d^2\phi}{dr^r} = -4 \pi r \rho(r)
+\end{align*}
+\noindent By letting $\phi \rightarrow u$ and $r \rightarrow x$ it is simplified to
+\begin{align*}
 -u^{\prime \prime}(x) = f(x), \quad x \in (0,1), \quad  u(0) = u(1) = 0
 \end{align*} 
-where we define the discretized approximation to $u$ as $v_i$ with grid point $x_i = ih$ in the interval from $x_0$ to $x_{n+1} = 1$, and the step length as $h = 1/(n+1)$. 
+where we define the discretized approximation to $u$ as $v_i$ with grid point $x_i = ih$ in the interval from $x_0$ to $x_{n+1} = 1$, and the step length as $h = 1/(n+1)$. \\
+
+\noindent By doing this we will be able to create algorithms for solving the tridiagonal matrix problem, and find out how efficient this is compared to other matrix elimination methods. 
 
 
-\addcontentsline{toc}{section}{Methods}
-\subsubsection*{Methods}
+\section{Methods}
 
 \begin{itemize}
 \item Describe methods and algorithms
@@ -98,14 +101,14 @@ where we define the discretized approximation to $u$ as $v_i$ with grid point $x
 \item Calculations to demonstrate the code, verify results(benchmarks) 
 \end{itemize}
 
+\subsection{Tridiagonal matrix}
+
 \noindent With the bounadry condition $v_0 = v_{n+1} = 0$, the approximation of the second derivative of $u$ was written as 
 \begin{align*}
-- \frac{v_{i+1} + v_{i-1} - 2v_i}{h^2} &= f_i, \quad i = 1,...,n
-\end{align*}
-where $f_i = f(x)$. We then rewrote the equation as a linear set of equations:
-\begin{align*}
-- (v_{i+1} + v_{i-1} - 2v_i) &= h^2f_i \\
-\intertext{We solved this equation for a few values of $i$. We also set $h^2f_i = d_i$.}
+- \frac{v_{i+1} + v_{i-1} - 2v_i}{h^2} = f_i, \quad i = 1,...,n
+\intertext{where $f_i = f(x)$. We then rewrote the equation as a linear set of equations:}
+- (v_{i+1} + v_{i-1} - 2v_i) = h^2f_i
+\intertext{We set $h^2f_i = d_i$, and solved this equation for a few values of $i$.}
 \intertext{$i = 1$:}
 - (v_{1+1} + v_{1-1} - 2v_1) &= d_1 \\
 - (v_2 + v_0 - 2v_1) &= d_1 \\
@@ -115,7 +118,9 @@ where $f_i = f(x)$. We then rewrote the equation as a linear set of equations:
 - v_3 - v_1 + 2v_2) &= d_2 
 \intertext{$i = 3$:}
 - (v_{3+1} + v_{3-1} - 2v_3) &= d_3 \\
-- v_4 - v_2 + 2v_3) &= d_3
+- v_4 - v_2 + 2v_3) &= d_3	
+\end{align*}
+\begin{align*}
 \intertext{We saw that this could be written as a linear set of equations $\vec{A} \vec{v} = \vec{d}$,}
  \left(\begin{array}{cccccc}
  	2& -1& 0 &\dots   & \dots &0 \\
@@ -140,13 +145,11 @@ where $f_i = f(x)$. We then rewrote the equation as a linear set of equations:
 	\dots \\
 	d_{n-1} \\
 	d_n \\
-	\end{array} \right)	
+	\end{array} \right)
 \end{align*}
 
 
-
-\addcontentsline{toc}{section}{Results}
-\subsubsection*{Results}
+\section{Results}
 
 \begin{itemize}
 \item Present results
@@ -155,16 +158,14 @@ where $f_i = f(x)$. We then rewrote the equation as a linear set of equations:
 \item Explanatory figures with captions, labels etc.
 \end{itemize}
 
-\addcontentsline{toc}{section}{Conclusion}
-\subsubsection*{Conclusion}
+\section{Conclusion}
 
 \begin{itemize}
 \item Main findings
 \item Perspectives on improvement and future work
 \end{itemize}
 
-\addcontentsline{toc}{section}{Appendix}
-\subsubsection*{Appendix}
+\section{Appendix}
 
 \begin{itemize}
 \item Additional calulations
@@ -173,8 +174,7 @@ where $f_i = f(x)$. We then rewrote the equation as a linear set of equations:
 \item Appendix can be pushed to GitHub!
 \end{itemize}
 
-\addcontentsline{toc}{section}{References}
-\subsubsection*{References}
+\section{References}
 
 \begin{itemize}
 \item Reference to material we based our work on(lecture notes etc.)
