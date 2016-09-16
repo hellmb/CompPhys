@@ -55,7 +55,7 @@ int main() {
     clock_t start, finish;           // declare start and final time 
     start = clock();                 // start clock
 
-    // loop to calculate the forward substitution algorithm
+    // calculating forward substitution algorithm
     for (int i=1; i<n+1; i++){
         if (b_tilde[i-1] == 0){
             // calculating b_tilde special case
@@ -75,7 +75,7 @@ int main() {
      v[n+1] = 0;
      v[n] = d[n] / b_tilde[n];
 
-    // calculate v from highest value to lowest
+    // calculating backward substituition algorithm
     for (int i=n; i>0; i--) {
         v[i] = (d[i] - c[i] * v[i+1]) / b_tilde[i];
     }
