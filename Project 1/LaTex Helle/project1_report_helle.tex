@@ -151,6 +151,13 @@ where we define the discretized approximation to $u$ as $v_i$ with grid point $x
 	\end{array} \right)
 \end{align*}
 
+\subsection{Relative error}
+\noindent We computed the relative error in the data set $i = 1,...,n$ by using the expression
+\begin{align*}
+\epsilon_i = log_{10} \Big( \Big| \frac{v_i - u_i}{u_i}  \Big| \Big)
+\end{align*}
+\noindent We implemented the cosed-form solution $u(x) = 1 - (1 - e^{-10})x - e^{-10x}$ to our code and calculated the relative error when increasing $n$ to $n = 10^7$. 
+
 \section{Results}
 
 \begin{itemize}
@@ -160,6 +167,29 @@ where we define the discretized approximation to $u$ as $v_i$ with grid point $x
 \item Explanatory figures with captions, labels etc.
 \end{itemize}
 
+\subsection{Relative error}
+\noindent In our python-code we took the minimum value of each list of error values. This was because the error values became negative, as a result of $u(x)$ being exponetial. We created a table of the relative error results:
+
+\begin{center}
+\begin{tabular}{| c | c |}
+	\hline
+	$n$ & $\epsilon$ \\
+	\hline
+	10 & -1.1797 \\
+	$10^2$ & -3.08804 \\
+	$10^3$ & -5.08005 \\
+	$10^4$ & -7.07936 \\
+	$10^5$ & -9.0049 \\
+	$10^6$ & -6.77137 \\
+	$10^7$ & -12.8074\\
+	\hline 
+\end{tabular}
+\medskip
+\\
+Table 4.1 Table of the relative error $\epsilon$ for increasing $n$
+\end{center}
+
+\noindent We saw that the error became smaller when $n$ increased, but for $n = 10^6$ this was not the case. Why?
 
 \section{Conclusion}
 

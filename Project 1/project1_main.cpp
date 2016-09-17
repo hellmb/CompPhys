@@ -1,12 +1,18 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
+    // converting input character to int
+    int exponent = atoi(argv[1]);
+
+    int base = 10;
+
     // vector size
-    int n = 100;
+    int n = pow(base, exponent);
 
     // calculate h value
     double h = 1.0/ (n + 1);
@@ -93,30 +99,36 @@ int main() {
         // calculating the error
         eps[i] = log10 ( abs( (v[i] - u[i]) / u[i] ) );
     }
+    
 
+    // creating files
 
-    // creating files to add the second derivatives
-    ofstream myfile;
-    //myfile.open("vector_v10.txt");
-    //myfile.open("vector_v100.txt");
-    //myfile.open("vector_v1000.txt");
+    // we only want to create vector files for n=10 to n=1000
+    if(n <= 1000){
+        string outputfile ("vector_v");
+        outputfile += argv[1];
+        outputfile += ".txt";                    // making the file a .txt-file
 
-    // writing v values for each n to file
-    for (int i=0; i<n+2; i++){
-        myfile << v[i] << " " << endl;
+        // creating files to add the second derivatives
+        ofstream myfile;
+        myfile.open(outputfile);
+
+        // writing v values for each n to file
+        for (int i=0; i<n+2; i++){
+            myfile << v[i] << " " << endl;
+        }
     }
 
-    //myfile.open("error_10.txt");
-    //myfile.open("error_100.txt");
-    //myfile.open("error_1000.txt");
-    //myfile.open("error_10000.txt");
-    //myfile.open("error_100000.txt"); 
-    //myfile.open("error_1E6.txt"); 
-    //myfile.open("error_1E7.txt");  
+    string outputfile_error ("error_");
+    outputfile_error += argv[1];
+    outputfile_error += ".txt";
+
+    ofstream myfile_error;
+    myfile_error.open(outputfile_error); 
 
     // writing epsilon values for each n to file
     for (int i=1; i<n+1; i++){
-        myfile << eps[i] << endl;
+        myfile_error << eps[i] << endl;
     }
 
 

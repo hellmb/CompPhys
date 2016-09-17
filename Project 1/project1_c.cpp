@@ -6,7 +6,7 @@
 using namespace std;
 
 int main() {
-    // matrix size
+    // vector size
     int n = 1000000;
 
     // calculate h value
