@@ -6,7 +6,8 @@ using namespace std;
 
 int main() {
 
-    int n = 1000;
+    // changeable parameter n
+    int n = 10;
 
     // creating a matrix A with n*n elements
     mat A(n, n);
@@ -24,8 +25,6 @@ int main() {
     finish = clock();
     cout << ( (double) ( finish - start ) / ((double)CLOCKS_PER_SEC )) << endl;
 
-
-    //L.print("L = ");
 
     return 0;
 }

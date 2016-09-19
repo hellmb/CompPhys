@@ -1,3 +1,8 @@
+'''
+Python script to plot tridiagonal algorithm against the closed-form solution,
+as well as finding the maximum value in the error list generated in the C++ program
+'''
+
 from pylab import *
 
 # importing vector files and 
@@ -23,12 +28,12 @@ if plot_figure:
 	# plotting u(x) against the three vectors of v values
 	plot(x, u(x), linewidth = 2.0, label=r'$u(x)$')
 	plot(x_10, v10, label=r'$v_i$ for $n$ = 10')
-	plot(x_100, v100, '*', label=r'$v_i$ for $n$ = 100')
+	plot(x_100, v100, '-.', label=r'$v_i$ for $n$ = 100')
 	plot(x, v1000, '-m', label=r'$v_i$ for $n$ = 1000')
-	title(r'Closed-form solution vs. tridiagonal matrix algorithm')
-	xlabel(r'$x$')
-	ylabel(r'$u$')
-	legend()
+	title(r'Closed-form solution vs. tridiagonal matrix algorithm', size=30)
+	xlabel(r'$x$', size=30)
+	ylabel(r'$u$', size=30)
+	legend(fontsize=20)
 	show()
 
 
@@ -48,7 +53,7 @@ if import_error:
 	# creating file to store the results of max error value in each error list
 	file = open('max_error_results.txt', 'w')
 	# we are taking the minimum values since all values in the lists are negative
-	file.write('Error n=10 Error n=100 Error n=1000 Error n=10000 Error n=1E5 Error n=1E6 Error n=1E7\n %g    %g     %g      %g      %g     %g      %g' % (min(err_1), min(err_2), min(err_3), min(err_4), min(err_5), min(err_6), min(err_7)) )
+	file.write('Error n=10 Error n=100 Error n=1000 Error n=10000 Error n=1E5 Error n=1E6 Error n=1E7\n %g   %g   %g   %g   %g   %g   %g' % (min(err_1), min(err_2), min(err_3), min(err_4), min(err_5), min(err_6), min(err_7)) )
 
 
 

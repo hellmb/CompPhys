@@ -1,3 +1,8 @@
+/*
+When running this program, set input to be exponent between 1 and 7, 
+i.e. ./'executable file' 1
+*/
+
 #include <iostream>
 #include <cmath>
 #include <fstream>
@@ -100,7 +105,7 @@ int main(int argc, char* argv[]) {
         eps[i] = log10 ( abs( (v[i] - u[i]) / u[i] ) );
     }
     
-
+/*
     // creating files
 
     // we only want to create vector files for n=10 to n=1000
@@ -130,7 +135,7 @@ int main(int argc, char* argv[]) {
     for (int i=1; i<n+1; i++){
         myfile_error << eps[i] << endl;
     }
-
+*/
 
     // deleting from heap to free m
     delete [] a;

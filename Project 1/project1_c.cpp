@@ -1,13 +1,23 @@
+/*
+When running this program, set input to be exponent between 1 and 6, 
+i.e. ./'executable file' 1
+*/
+
 #include <iostream>
 #include <cmath>
-#include <fstream>		/* Library for file operations */
+#include <fstream>
 #include "time.h"
 
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
+    // converting input character to int
+    int exponent = atoi(argv[1]);
+
+    int base = 10;
+
     // vector size
-    int n = 1000000;
+    int n = pow(base, exponent);
 
     // calculate h value
     double h = 1.0/ (n + 1);
@@ -62,7 +72,7 @@ int main() {
 
     // calculate v from highest value to lowest
     for (int i=n; i>0; i--) {
-        v[i] = d[i+1] + ( d[i] * i ) / ( i + 1 );
+        v[i] = ( d[i+1] + d[i] )/ b_spec[i];
     }
 
 
@@ -71,7 +81,6 @@ int main() {
     // print CPU time
     cout << ( (double) ( finish - start ) / ((double)CLOCKS_PER_SEC )) << endl;
 
-    // time to calculate is small -> woho! Remember to make table of clock values!!
 
     // deleting from heap, make more efficient later!
     delete [] a;
