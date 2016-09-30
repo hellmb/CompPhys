@@ -1,25 +1,24 @@
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include <cmath>
+#include <armadillo>
 #include <stdlib.h>
 #include <class_jacobi.h>
+#include <time_armadillo.h>
 
 using namespace std;
+using namespace arma;
 
 // function to print matrix
-void matrix ( double **B, int N ) {
+void matrix ( double **A, int N ) {
     for (int i = 0; i < N; i++ ){
         for (int j = 0; j < N; j++ ) {
-            cout << setw(10) << B[i][j] << " ";
+            cout << setw(10) << A[i][j] << " ";
         }
         cout << endl;
     }
 }
-
-// compare function for sorting values
-/*int comp (const void * a, const void * b){
-   return ( *(int*)a - *(int*)b );
-}*/
 
 int main() {
 
@@ -32,16 +31,14 @@ int main() {
     V = new double [N];
     d = new double [N];
     e = new double [N];
-    double rho_max = 6;
 
     // boundary condition for rho
-//    rho[0] = 0.0;
-//    rho[N] = 6.0;
+    double rho_max = 6;
 
     // step length
     double h = rho_max / (N+1);
 
-    // rho
+    // filling rho-array
     for (int i = 0; i < N; i++) {
         rho[i] = (i+1) * h;
     }
@@ -54,89 +51,69 @@ int main() {
     }
 
     // dynamic 2D arrays
-    double **B = new double*[N];
+    double **A = new double*[N];
     double **R = new double*[N];
 
     // fill matrix A
     for (int i = 0; i < N; i++ ){          // column
         // each i-th pointer is pointing to a dynamic array
-        B[i] = new double[N];
+        A[i] = new double[N];
         R[i] = new double[N];
 
         for (int j = 0; j < N; j++ ) {     // row
             if ( i == j ) {
-                B[i][j] = d[i];
+                A[i][j] = d[i];
             } else if ( i == j - 1 || j == i - 1 ) {
-                B[i][j] = e[i];
+                A[i][j] = e[i];
             } else {
-                B[i][j] = 0;
+                A[i][j] = 0;
             }
         }
     }
 
     // matrix(B, N);
 
-    //    for (int i = 0; i < N+1; i++){
-    //        cout << B[i][i] << endl;
-    //    }
-
-    //    for (int i = 0; i < N+1; i++){
-    //        for (int j = 0; j < N+1; j++) {
-    //            B[i][j] = 0;
-    //        }
-    //    }
-
-    //    B[1][0] = 5;
-    //    B[0][1] = B[1][0];
-    //    B[0][0] = 1;
-    //    B[1][1] = 3;
-    //    B[2][2] = 1;
+    // time CPU
+    clock_t start, finish;           // declare start and final time
+    start = clock();                 // start clock
 
     // now, let's try the jacobi method
-    jacobi_method(B, R, N);
+    jacobi_method(A, R, N);
 
-    //    for (int i = 0; i < N+1; i++){
-    //        for (int j = 0; j < N+1; j++) {
-    //            cout << setw(10) << B[i][j] << " ";
-    //        }
-    //        cout << endl;
-    //    }
+    finish = clock();               // end clock
 
-    //    for (int i = 0; i < N+1; i++){
-    //        for (int j = 0; j < N+1; j++) {
-    //            cout << setw(10) << R[i][j] << " ";
-    //        }
-    //        cout << endl;
-    //    }
-    //    exit(1);
+    // print CPU time
+    cout << "Time Jacobi method: " << ( (double) ( finish - start ) / ((double)CLOCKS_PER_SEC )) << endl;
+
+
 
     // array of diagonal elements -> easier to sort
     double *diag = new double[N];
 
     for (int i = 0; i < N; i++){
-        diag[i] = B[i][i];
+        diag[i] = A[i][i];
     }
 
-    for (int i = 0; i < N; i ++){
-        cout << *(diag + i) << endl;
+    // create file for sorting in python
+    if (N == 400) {
+        ofstream myfile;
+        myfile.open("eigenvalues.txt");
+        for (int i = 0; i < N; i++){
+            myfile << diag[i] << endl;
+        }
+        myfile.close();
     }
 
-
-    // sort values of diag array
-    //qsort (diag, N+1, sizeof(double), comp);
-
-
-    /*for (int i = 0; i < N+1; i ++){
-        cout << *(diag + i) << endl;
-    }*/
-    //matrix(B,N);
+    // calculating the time 'armadillo' use to find the eigenvalues
+    //time_armadillo(d, e, N);
 
 
     // delete from HEAP to free memory
     delete [] rho;
     delete [] V;
     delete [] d;
-    delete [] B;
+    delete [] e;
+    delete [] A;
     delete [] R;
 
     return 0;
