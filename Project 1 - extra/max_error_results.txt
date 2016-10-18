@@ -1,0 +1,2 @@
+Error n=10 Error n=100 Error n=1000 Error n=10000 Error n=1E5 Error n=1E6 Error n=1E7
+ -1.1797    -3.08804     -5.08005      -7.07936      -9.0049     -6.77137      -12.8074

@@ -22,6 +22,8 @@ int main() {
     // find the LU decomposition
     lu(L,U,A);
 
+
+
     finish = clock();
     cout << ( (double) ( finish - start ) / ((double)CLOCKS_PER_SEC )) << endl;
 

@@ -1,5 +1,5 @@
 /*
- Jacobi's method for finding eigenvalues and eigenvector
+ Jacobi's method for finding eigenvalues and eigenvectors
  of the symmetric matrix A
 
  The eigenvalues will appear as the diagonal elements of A, A[i][i]
@@ -13,7 +13,7 @@
 
 #include <iostream>
 #include <cmath>
-#include "class_jacobi.h"
+#include <class_jacobi.h>
 
 using namespace std;
 
@@ -23,7 +23,7 @@ double maxoffdiag ( double **A, int &k, int &l, int n ) {
 
     double max = 0;
 
-    // calculate maximum value of A -> create a more elegant algorithm for this later
+    // calculate maximum value of A
     for ( int i = 0; i < n; i++ ){
         for ( int j = i + 1; j < n; j++ ) {
             if ( fabs( A[i][j] ) > max ) {
@@ -37,21 +37,20 @@ double maxoffdiag ( double **A, int &k, int &l, int n ) {
     return max;
 }
 
-// function for finding the values of cos and sin
+// similarity transformation
 void rotate ( double **A, double **R, int k, int l, int n ) {
 
+    // set these to INIFINITY for easier debugging of the c- and s-values
     double c = INFINITY;
     double s = INFINITY;
 
-    // loop to calculate the above variables
+    // loop to calculate c, s, tau and t
     if ( A[k][l] != 0 ) {
         double tau =( A[l][l] - A[k][k] ) / ( 2 * A[k][l] );
 
-        // avoid loss of precision
-        //double t = 1.0 / ( tau + sqrt( 1.0 + tau * tau ) );
         double t = -tau + sqrt(1 + tau*tau);
+
         if(tau <= 0) {
-            // t = 1.0 / ( - tau + sqrt( 1.0 + tau * tau ) );
             t = -tau - sqrt(1 + tau*tau);
         }
 
@@ -74,11 +73,12 @@ void rotate ( double **A, double **R, int k, int l, int n ) {
     // set biggest non-diagonal elements to zero
     A[k][l] = 0.0;
     A[l][k] = 0.0;
-    // and then we change the remaining elements
+    // change the remaining elements
     for ( int i = 0; i < n; i++ ) {
         if ( i != k && i != l ) { 
             double a_ik = A[i][k];
             double a_il = A[i][l];
+
             A[i][k] = c*a_ik - s*a_il; 
             A[k][i] = A[i][k];
 
@@ -86,7 +86,7 @@ void rotate ( double **A, double **R, int k, int l, int n ) {
             A[l][i] = A[i][l];
         }
 
-        // Finally, we compute the new eigenvectors
+        // compute new eigenvectors
         double r_ik = R[i][k];
         double r_il = R[i][l];
         R[i][k] = c*r_ik - s*r_il;
@@ -95,13 +95,13 @@ void rotate ( double **A, double **R, int k, int l, int n ) {
 }
 
 
-// function for solving the Jacobi method
+// function for the Jacobi method
 void jacobi_method (double **A, double **R, int n) {
 
-    // create eigenvector matrix R --> can use armadillo to create this, compare flops later
+    // create eigenvector matrix R
     for ( int i = 0; i < n; i++ ) {
         for ( int j = 0; j < n; j++ ) {
-            // create if-test to fill the diagonal with 1 and the rest with 0
+            // fill the diagonal with 1 and the rest with 0
             if ( i == j ) {
                 R[i][j] = 1.0;
             } else {
@@ -113,8 +113,10 @@ void jacobi_method (double **A, double **R, int n) {
 
     // tolerance
     double epsilon = 1.0E-8;
-    // maximum number of iterations unknown -> try a number and make sure the actual number of iterations are smaller
+
+    // maximum number of iterations unknown, so we use the number of FLOPS for the Jacobi method
     long max_iteration = n * n * n;
+
     // setting iteration to be 0 at first, and adding to it as we calculate
     long iteration = 0;
 

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <armadillo> 
-#include "time_armadillo.h"
+#include <time_armadillo.h>
 
 using namespace arma;
 using namespace std;
@@ -15,9 +15,11 @@ void time_armadillo(double *d, double *e, int N) {
         for (int j = 0; j < N; j++ ) {
             if ( i == j ) {
                 A(i,j) = d[i];
-            } else if ( i == j - 1 || j == i - 1 ) {
+            }
+            else if ( i == j - 1 || j == i - 1 ) {
                 A(i,j) = e[i];
-            } else {
+            }
+            else {
                 A(i,j) = 0;
             }
         }
@@ -39,6 +41,4 @@ void time_armadillo(double *d, double *e, int N) {
     // print CPU time
     cout << "Time 'armadillo': "<< ( (double) ( finish - start ) / ((double)CLOCKS_PER_SEC )) << endl;
 
-    // printout to check that we got the right eigenvalues as the Jacobi method
-    //eigval.print("Eigenvalues = ");
 }
